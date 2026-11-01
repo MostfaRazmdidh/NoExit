@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(1152, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceil"]
+size = Vector2(1152, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left"]
+size = Vector2(40, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right"]
+size = Vector2(40, 648)
+
+[node name="Main" type="Node2D"]
+
+[node name="BackWall" type="Polygon2D" parent="."]
+color = Color(0.16, 0.17, 0.19, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.09, 0.09, 0.1, 1)
+polygon = PackedVector2Array(0, 608, 1152, 608, 1152, 648, 0, 648)
+
+[node name="Ceiling" type="Polygon2D" parent="."]
+color = Color(0.1, 0.1, 0.11, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 40, 0, 40)
+
+[node name="DoorFrame" type="Polygon2D" parent="."]
+color = Color(0.28, 0.25, 0.22, 1)
+polygon = PackedVector2Array(1034, 452, 1108, 452, 1108, 608, 1034, 608)
+
+[node name="Door" type="Polygon2D" parent="."]
+color = Color(0.07, 0.07, 0.08, 1)
+polygon = PackedVector2Array(1042, 460, 1100, 460, 1100, 608, 1042, 608)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="FloorShape" type="CollisionShape2D" parent="Walls"]
+position = Vector2(576, 628)
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="CeilingShape" type="CollisionShape2D" parent="Walls"]
+position = Vector2(576, 20)
+shape = SubResource("RectangleShape2D_ceil")
+
+[node name="LeftShape" type="CollisionShape2D" parent="Walls"]
+position = Vector2(20, 324)
+shape = SubResource("RectangleShape2D_left")
+
+[node name="RightShape" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1132, 324)
+shape = SubResource("RectangleShape2D_right")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(576, 588)

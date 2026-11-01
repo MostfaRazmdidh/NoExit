@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_player"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(18, 40)
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.55, 0.6, 0.66, 1)
+polygon = PackedVector2Array(-9, -20, 9, -20, 9, 20, -9, 20)
+
+[node name="Hood" type="Polygon2D" parent="."]
+color = Color(0.38, 0.42, 0.5, 1)
+polygon = PackedVector2Array(-7, -20, 7, -20, 7, -8, -7, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
